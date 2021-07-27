@@ -4,6 +4,8 @@
   "description": "simple messenger api that would enable a web",
   "main": "index.js",
   "scripts": {
+    "build": "./scripts/build.sh && npm run compile",
+    "compile": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
