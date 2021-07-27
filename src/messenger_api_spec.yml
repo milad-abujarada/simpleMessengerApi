@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ''
+  description: Simple Messenger Api for short text messages between users
+servers:
+  # Added by API Auto Mocking Plugin
+  - url: https://virtserver.swaggerhub.com/milad-pers/simpleMessengerApi/v1
+    description: SwaggerHub API Auto Mocking
+  - url: http://localhost:3001/
+paths:
+  /recentMsgs/{recipientId}:
+    get:
+      description: returns up to 100 recent messages for a recipient if query param limit is true, otherwise returns all messages in the last 30 days.
+      parameters:
+        - in: path
+          name: recipientId
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipientId'
+        - in: query
+          name: limit
+          content:
+            application/json:
+              schema:
+                type: boolean
+      responses:
+        200:
+          description: list of messages to a specific recipient
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+  /recentMsgsBySender/{recipientId}:
+    get:
+      description: returns up to 100 recent messages for a recipient by a specific sender if query param limit is true, otherwise returns all messages in the last 30 days.
+      parameters:
+        - in: path
+          name: recipientId
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipientId'
+        - in: query
+          name: senderId
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SenderId'
+        - in: query
+          name: limit
+          content:
+            application/json:
+              schema:
+                type: boolean
+      responses:
+        200:
+          description: a list of messages for a recipient from a specific sender
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SenderMsgs'
+  /message:
+    post:
+      description: posts a message from a user
+      requestBody:
+        description: a message with sender and reciever info
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: successful post of a user message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulPostResponse'
+components:
+  schemas:
+    Message:
+      type: object
+      required: 
+        - senderId
+          recipientId
+          messageBody
+          date
+      properties:
+        senderId:
+          $ref: '#/components/schemas/SenderId'
+        recipientId:
+          $ref: "#/components/schemas/RecipientId"
+        messageBody:
+          $ref: '#/components/schemas/MessageBody'
+        date:
+          $ref: '#/components/schemas/Date'
+    MessageBody:
+      type: string
+      example: "This's a test message body"
+    SenderId:
+      type: integer
+      example: 123
+    RecipientId:
+      type: integer
+      example: 789
+    Date:
+      type: string
+      format: date-time
+      example: "2021-07-26T23:20:50.52Z"
+    SuccessfulPostResponse:
+      type: string
+      example: 'Message was saved successfully'
+    SenderMsgs:
+      type: object
+      required:
+        - senderId
+          reciverId
+      properties:
+        senderId:
+          $ref: '#/components/schemas/SenderId'
+        recipientId:
+          $ref: '#/components/schemas/RecipientId'
+        messages: 
+          type: array
+          items:
+            type: object
+            required:
+             - messageBody
+               date
+            properties:
+              messageBody:
+                $ref: '#/components/schemas/MessageBody'
+              date:
+                $ref: '#/components/schemas/Date'
