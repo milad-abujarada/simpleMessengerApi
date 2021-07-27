@@ -1,0 +1,22 @@
+{
+  "name": "simple_messenger_api",
+  "version": "1.0.0",
+  "description": "simple messenger api that would enable a web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milad-abujarada/simpleMessengerApi.git"
+  },
+  "author": "Milad Abujarada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milad-abujarada/simpleMessengerApi/issues"
+  },
+  "homepage": "https://github.com/milad-abujarada/simpleMessengerApi#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
