@@ -1,4 +1,5 @@
 #/bin/bash
 
-mkdir -p ../dist
+rm -rf ./dist
+mkdir -p ./dist
 cp ./src/*.yml ./dist
