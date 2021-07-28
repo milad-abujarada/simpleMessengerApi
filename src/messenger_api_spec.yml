@@ -26,7 +26,7 @@ paths:
                 default: false
       responses:
         200:
-          description: list of messages to a specific recipient
+          description: list of messages for a specific recipient
           content:
             application/json:
               schema:
@@ -64,10 +64,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SenderMsgs'
-  /message:
+               $ref: '#/components/schemas/Messeges'
+  /message/{recipientId}:
     post:
       description: posts a message from a user
+      parameters:
+        - in: path
+          name: recipientId
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipientId'
       requestBody:
         description: a message with sender and reciever info
         required: true
@@ -76,7 +84,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Message'
       responses:
-        '200':
+        '201':
           description: successful post of a user message
           content:
             application/json:
@@ -88,14 +96,11 @@ components:
       type: object
       required: 
         - senderId
-          recipientId
           messageBody
           date
       properties:
         senderId:
           $ref: '#/components/schemas/SenderId'
-        recipientId:
-          $ref: "#/components/schemas/RecipientId"
         messageBody:
           $ref: '#/components/schemas/MessageBody'
         date:
@@ -110,31 +115,13 @@ components:
       type: integer
       example: 789
     Date:
-      type: string
-      format: date-time
-      example: "2021-07-26T23:20:50.52Z"
+      type: integer
+      description: Epoch timne
+      example: 1627483495
     SuccessfulPostResponse:
       type: string
       example: 'Message was saved successfully'
-    SenderMsgs:
-      type: object
-      required:
-        - senderId
-          reciverId
-      properties:
-        senderId:
-          $ref: '#/components/schemas/SenderId'
-        recipientId:
-          $ref: '#/components/schemas/RecipientId'
-        messages: 
-          type: array
-          items:
-            type: object
-            required:
-             - messageBody
-               date
-            properties:
-              messageBody:
-                $ref: '#/components/schemas/MessageBody'
-              date:
-                $ref: '#/components/schemas/Date'
+    Messeges:
+      type: array
+      items:
+        $ref: '#/components/schemas/Message'
