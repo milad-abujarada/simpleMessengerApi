@@ -4,9 +4,6 @@ info:
   title: ''
   description: Simple Messenger Api for short text messages between users
 servers:
-  # Added by API Auto Mocking Plugin
-  - url: https://virtserver.swaggerhub.com/milad-pers/simpleMessengerApi/v1
-    description: SwaggerHub API Auto Mocking
   - url: http://localhost:3001/
 paths:
   /recentMsgs/{recipientId}:
