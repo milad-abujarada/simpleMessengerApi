@@ -2,14 +2,14 @@
  * @example
     {
         senderId: 456,
-        reciepientId: 123,
+        recipientId: 123,
         messageBody: "This's a test message from senderId 456 to reciepientId 123",
         date: 2019-05-27T11:53:32.118Z
     }
  */
 interface Message {
     senderId: number,
-    reciepientId: number,
+    recipientId: number,
     messageBody: string,
     date: Date
 }

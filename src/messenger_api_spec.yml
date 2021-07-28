@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: 1.0.0
+  version: 1.0.1
   title: ''
   description: Simple Messenger Api for short text messages between users
 servers:
@@ -23,6 +23,7 @@ paths:
             application/json:
               schema:
                 type: boolean
+                default: false
       responses:
         200:
           description: list of messages to a specific recipient
@@ -56,6 +57,7 @@ paths:
             application/json:
               schema:
                 type: boolean
+                default: false
       responses:
         200:
           description: a list of messages for a recipient from a specific sender
