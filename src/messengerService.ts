@@ -18,7 +18,7 @@ export default class MessengerService {
     }
 
     static saveMessage(recipientId: number, message: Message): boolean {
-        let messages = MessagesStore.messages.get(message.recipientId);
+        let messages = MessagesStore.messages.get(recipientId);
         if(_.isUndefined(messages)) {
             messages = [message];
         } else {
@@ -35,8 +35,13 @@ export default class MessengerService {
     }
 
     private static recentThirtyDaysMessages(messages: Message[]): Message[] {
-        return messages.filter(message => {
-            //need to implement filtering logic
-        })
+        const nowEpoch = new Date().getTime();
+        return messages.filter(message => message.date >= MessengerService.calculateThirtyDaysbackDate(nowEpoch))
+    }
+
+    private static calculateThirtyDaysbackDate(nowEpoch: number):number {
+        
+        const thirtyDaysMillisec = 2592000000;
+        return nowEpoch - thirtyDaysMillisec
     }
 }

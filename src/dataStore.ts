@@ -5,45 +5,39 @@ const messageStore: MessagesStore = {
         [123, [
                 {
                     senderId: 987,
-                    recipientId: 123,
                     messageBody: "This's a test message from senderId 987 to reciepientId 123",
-                    date: new Date()
+                    date: 1627523338761
                 },
                 {
                     senderId: 456,
-                    recipientId: 123,
                     messageBody: "This's a test message from senderId 456 to reciepientId 123",
-                    date: new Date()
+                    date: 1627523238761
                 }
             ]
         ],
         [456, [
                 {
                     senderId: 123,
-                    recipientId: 456,
                     messageBody: "This's a test message from senderId 123 to reciepientId 456",
-                    date: new Date()
+                    date: 11626523338761
                 }
             ]
         ],
         [987, [
                 {
                     senderId: 123,
-                    recipientId: 987,
                     messageBody: "This's a test message from senderId 123 to reciepientId 987",
-                    date: new Date()
+                    date: 1627523336761
                 },
                 {
                     senderId: 123,
-                    recipientId: 987,
                     messageBody: "This's a test message from senderId 123 to reciepientId 987",
-                    date: new Date()
+                    date: 1627522338761
                 },
                 {
                     senderId: 123,
-                    recipientId: 987,
                     messageBody: "This's a test message from senderId 123 to reciepientId 987",
-                    date: new Date()
+                    date: 1617322338761
                 }
             ]
 
