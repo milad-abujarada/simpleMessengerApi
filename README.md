@@ -20,7 +20,7 @@ Once you have successfully run the application, in a browser you can navigate to
 
 ## Implementation details
 
-My first thoughts around implementing this api was to use docker's [localstack](https://hub.docker.com/r/localstack/localstack) to initialize a dynmodb table as the data store (future work 🤞). However, for the sake of time I have decided to us a map data structure as my data store. The map holds recipients message with the key being the recipient id and the values are an array of the recipient messages. ex.
+My first thoughts around implementing this api was to use docker's [localstack](https://hub.docker.com/r/localstack/localstack) to initialize a **dynmodb** table as the data store (future work 🤞). However, for the sake of time I have decided to use TypeScript's **Map data structure** as a "data store". The map holds recipient messages with the key being the recipient id and the values are an array of recipient messages. ex.
 ```javascript
 {
         messages: Map(3) {
