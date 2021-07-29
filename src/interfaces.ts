@@ -3,7 +3,7 @@
     {
         senderId: 456,
         messageBody: "This's a test message from senderId 456 to reciepientId 123",
-        date: 2019-05-27T11:53:32.118Z
+        date: 1617322338761
     }
  */
 interface Message {

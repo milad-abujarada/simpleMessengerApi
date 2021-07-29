@@ -3,7 +3,6 @@ import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 
 import MessengerService from './messengerService';
-import { Message } from './interfaces';
 
 const path = `${ process.cwd() }/dist`;
 const swaggerDocument = YAML.load(`${ path }/messenger_api_spec.yml`);
@@ -26,10 +25,10 @@ app.get('/recentMsgsBySender/:recipientId', (req: Request, res: Response) => {
 
 app.post('/message/:recipientId', express.json(),(req: Request, res: Response) => {
     const recipientId = parseInt(req.params.recipientId);
-    MessengerService.saveMessage(recipientId, req.body)
-    res.status(201).send('Message was saved successfully')
+    MessengerService.saveMessage(recipientId, req.body);
+    res.status(201).send('Message was saved successfully');
 });
 
 const server = app.listen(3001, () => console.log("server running on port 3001"));
 
-process.on('SIGTERM',server.close)
+process.on('SIGTERM',server.close);
