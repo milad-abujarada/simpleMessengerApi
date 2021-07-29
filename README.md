@@ -19,3 +19,23 @@ Once you have successfully run the application, in a browser you can navigate to
 4. Following the same steps you can test the other two endpoints. I would suggest testing the **POST** endpoint then one of the **GET** endpoints to retrieve your posted message :blush:.
 
 ## Implementation details
+
+My first thoughts around implementing this api was to use docker's [localstack](https://hub.docker.com/r/localstack/localstack) to initialize a dynmodb table as the data store (future work 🤞). However, for the sake of time I have decided to us a map data structure as my data store. The map holds recipients message with the key being the recipient id and the values are an array of the recipient messages. ex.
+```javascript
+{
+        messages: Map(3) {
+            123 => [ [Message], [Message] ],
+            456 => [ [Message] ],
+            987 => [ [Message], [Message], [Message] ]
+        }
+    }
+```
+The messages structure is 
+```javascript
+ {
+        senderId: 456,
+        messageBody: "This's a test message from senderId 456 to reciepientId 123",
+        date: 1617322338761 //Epoch time
+    }
+```
+The POST endpoint assumes a recieved message is the latest from a sender and its added to the front of the array of messages for the recipient 
