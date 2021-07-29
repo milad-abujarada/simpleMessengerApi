@@ -27,7 +27,7 @@ app.get('/recentMsgsBySender/:recipientId', (req: Request, res: Response) => {
 app.post('/message/:recipientId', express.json(),(req: Request, res: Response) => {
     const recipientId = parseInt(req.params.recipientId);
     MessengerService.saveMessage(recipientId, req.body)
-    res.status(201).send('success')
+    res.status(201).send('Message was saved successfully')
 });
 
 app.listen(3001, () => console.log("server running on port 3001"));
