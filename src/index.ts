@@ -30,4 +30,6 @@ app.post('/message/:recipientId', express.json(),(req: Request, res: Response) =
     res.status(201).send('Message was saved successfully')
 });
 
-app.listen(3001, () => console.log("server running on port 3001"));
+const server = app.listen(3001, () => console.log("server running on port 3001"));
+
+process.on('SIGTERM',server.close)
