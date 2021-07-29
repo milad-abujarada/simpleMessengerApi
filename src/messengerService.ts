@@ -8,13 +8,13 @@ export default class MessengerService {
 
     static getRecentMsgs(recipientId: number, limit?: boolean): Message[]|[] {
         const messages = MessagesStore.messages.get(recipientId);
-        if(_.isUndefined(messages)) {
-            return []
-        }
-        if (limit) {
-            return MessengerService.recentHundredMessages(messages);
-        } 
-        return MessengerService.recentThirtyDaysMessages(messages);
+        return MessengerService.applyLimit(messages,limit)
+    }
+
+    static getRecentMsgsBySender(recipientId: number, senderId: number, limit?: boolean): Message[]|[] {
+        const messages = MessagesStore.messages.get(recipientId);
+        const messagesBySender = messages?.filter((message: { senderId: number; }) => message.senderId == senderId);
+        return MessengerService.applyLimit(messagesBySender, limit);
     }
 
     static saveMessage(recipientId: number, message: Message): boolean {
@@ -43,5 +43,15 @@ export default class MessengerService {
         
         const thirtyDaysMillisec = 2592000000;
         return nowEpoch - thirtyDaysMillisec
+    }
+
+    private static applyLimit(messages?: Message[], limit?: boolean): Message[]|[] {
+        if(_.isUndefined(messages)) {
+            return []
+        }
+        if (limit) {
+            return MessengerService.recentHundredMessages(messages);
+        } 
+        return MessengerService.recentThirtyDaysMessages(messages);
     }
 }

@@ -32,10 +32,10 @@ const messageStore: MessagesStore = {
                 {
                     senderId: 123,
                     messageBody: "This's a test message from senderId 123 to reciepientId 987",
-                    date: 1627522338761
+                    date: 1619848800000
                 },
                 {
-                    senderId: 123,
+                    senderId: 456,
                     messageBody: "This's a test message from senderId 123 to reciepientId 987",
                     date: 1617322338761
                 }

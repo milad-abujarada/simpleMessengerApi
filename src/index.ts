@@ -17,10 +17,12 @@ app.get('/recentMsgs/:recipientId', (req: Request, res: Response) => {
     res.status(200).send(MessengerService.getRecentMsgs(recipientId, limit));
 });
 
-// app.get('/recentMsgsBySender/:recipientId', (req: Request, res: Response) => {
-//     console.log(req)
-//     res.send(MessengerService.getRecentMsgs(123));
-// })
+app.get('/recentMsgsBySender/:recipientId', (req: Request, res: Response) => {
+    const recipientId = parseInt(req.params.recipientId);
+    const senderId = parseInt(req.query.senderId as string);
+    const limit = req.query.limit == 'true';
+    res.status(200).send(MessengerService.getRecentMsgsBySender(recipientId,senderId,limit));
+})
 
 app.post('/message/:recipientId', express.json(),(req: Request, res: Response) => {
     const recipientId = parseInt(req.params.recipientId);
