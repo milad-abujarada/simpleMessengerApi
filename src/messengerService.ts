@@ -30,7 +30,7 @@ export default class MessengerService {
 
     
     private static recentHundredMessages(messages: Message[]): Message[] {
-        const result = messages.length <= 100 ? messages : messages.slice(-100);
+        const result = messages.length <= 100 ? messages : messages.slice(0,100);
         return result;
     }
 
